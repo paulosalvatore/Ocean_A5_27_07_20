@@ -2,6 +2,13 @@ package com.oceanbrasil.ocean_a5_27_07_20
 
 import androidx.lifecycle.ViewModel
 
+// ViewModel
 class ContadorViewModel : ViewModel() {
-    var i = 0
+    val contador = Contador(0)
+
+//    fun contar() {
+//        contador.contar()
+//    }
+//
+//    fun exibir() = contador.exibir()
 }

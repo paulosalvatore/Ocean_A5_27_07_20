@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 
+// View
 class MainActivity : AppCompatActivity() {
 
-    val viewModel by lazy {
+    private val viewModel by lazy {
         ViewModelProvider(this).get(ContadorViewModel::class.java)
     }
 
@@ -16,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         textView.setOnClickListener {
-            viewModel.i++
+            viewModel.contador.contar()
 
             atualizarExibicaoTexto()
         }
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun atualizarExibicaoTexto() {
-        textView.text = "Texto clicado: ${viewModel.i}"
+        textView.text = "Texto clicado: ${viewModel.contador.exibir()}"
     }
 
 /*
