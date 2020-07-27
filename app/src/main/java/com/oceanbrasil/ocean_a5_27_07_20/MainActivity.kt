@@ -16,16 +16,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // TODO: Implementar o DataBinding
+
         textView.setOnClickListener {
             viewModel.contador.contar()
 
+            // TODO: Resolver problema de chamar a mesma função para atualizar
+            // TODO: o texto mais de uma vez
             atualizarExibicaoTexto()
         }
 
+        // TODO: Resolver
         atualizarExibicaoTexto()
     }
 
     private fun atualizarExibicaoTexto() {
+        // TODO: Mudar abordagem
         textView.text = "Texto clicado: ${viewModel.contador.exibir()}"
     }
 
