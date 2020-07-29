@@ -1,7 +1,9 @@
 package com.oceanbrasil.ocean_a5_27_07_20
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -20,19 +22,16 @@ class MainActivity : AppCompatActivity() {
 
         textView.setOnClickListener {
             viewModel.contador.contar()
-
-            // TODO: Resolver problema de chamar a mesma função para atualizar
-            // TODO: o texto mais de uma vez
-            atualizarExibicaoTexto()
         }
 
-        // TODO: Resolver
-        atualizarExibicaoTexto()
-    }
+        button.setOnClickListener {
+            viewModel.contador.contar(5)
+        }
 
-    private fun atualizarExibicaoTexto() {
-        // TODO: Mudar abordagem
-        textView.text = "Texto clicado: ${viewModel.contador.exibir()}"
+        viewModel.contador.quantidade.observe(this, Observer {
+            Log.d("LIVE_DATA", "Dado atualizado para $it")
+            textView.text = "Texto clicado: $it"
+        })
     }
 
 /*

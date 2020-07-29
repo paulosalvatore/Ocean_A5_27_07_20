@@ -1,13 +1,19 @@
 package com.oceanbrasil.ocean_a5_27_07_20
 
+import androidx.lifecycle.MutableLiveData
+
 // Model
 data class Contador(
-    // TODO: Utilizar LiveData
-    private var quantidade: Int
+    private val quantidadeInicial: Int = 0
 ) {
-    fun contar() {
-        quantidade++
+    val quantidade = MutableLiveData<Int>()
+
+    init {
+        quantidade.value = quantidadeInicial
     }
 
-    fun exibir() = quantidade
+    fun contar(quantidadeContar: Int = 1) {
+        val valorAtual = quantidade.value!!
+        quantidade.value = valorAtual + quantidadeContar
+    }
 }
