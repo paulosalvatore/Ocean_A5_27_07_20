@@ -1,19 +1,23 @@
 package com.oceanbrasil.ocean_a5_27_07_20
 
-import androidx.lifecycle.MutableLiveData
+import androidx.databinding.BaseObservable
+import androidx.databinding.Bindable
 
 // Model
-data class Contador(
-    private val quantidadeInicial: Int = 0
-) {
-    val quantidade = MutableLiveData<Int>()
+class Contador(
+    val tempoInicio: Int = 1000,
+    quantidade: Int = 0
+): BaseObservable() {
 
-    init {
-        quantidade.value = quantidadeInicial
-    }
+    // 2ª maneira de fazer
+    @get:Bindable
+    var quantidade = quantidade
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.quantidade)
+        }
 
     fun contar(quantidadeContar: Int = 1) {
-        val valorAtual = quantidade.value!!
-        quantidade.value = valorAtual + quantidadeContar
+        quantidade += quantidadeContar
     }
 }

@@ -1,29 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Hello World!"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <!--<variable
+            name="quantidadeInt"
+            type="Integer" />-->
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Contar + 5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        <variable
+            name="viewModel"
+            type="com.oceanbrasil.ocean_a5_27_07_20.ContadorViewModel" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="handlers"
+            type="com.oceanbrasil.ocean_a5_27_07_20.MyHandlers" />
+
+        <variable
+            name="visibilidade"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/tvInicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{String.valueOf(viewModel.contador.tempoInicio)}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="TextView TempoInício" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="contar"
+            android:text='@{"Contador: " + viewModel.contador.quantidade}'
+            android:visibility="@{visibilidade}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvInicio"
+            tools:text="TextView Contador" />
+
+        <!--        android:onClick="@{handlers::contar}"-->
+
+        <!--<ImageView
+            android:imageUrl="asd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints" />-->
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Contar + 5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

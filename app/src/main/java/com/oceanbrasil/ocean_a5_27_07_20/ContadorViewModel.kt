@@ -1,6 +1,6 @@
 package com.oceanbrasil.ocean_a5_27_07_20
 
-import androidx.lifecycle.MutableLiveData
+import androidx.databinding.Bindable
 import androidx.lifecycle.ViewModel
 
 // ViewModel

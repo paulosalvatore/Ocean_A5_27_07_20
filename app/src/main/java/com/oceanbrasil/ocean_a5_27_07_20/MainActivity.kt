@@ -1,10 +1,11 @@
 package com.oceanbrasil.ocean_a5_27_07_20
 
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.oceanbrasil.ocean_a5_27_07_20.databinding.ActivityMainBinding
 import kotlinx.android.synthetic.main.activity_main.*
 
 // View
@@ -16,22 +17,39 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
+
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(
+            this,
+            R.layout.activity_main
+        )
+
+        // 1ª maneira de fazer
+        binding.visibilidade = View.VISIBLE
+
+        binding.viewModel = viewModel
 
         // TODO: Implementar o DataBinding
 
-        textView.setOnClickListener {
-            viewModel.contador.contar()
-        }
+//        textView.setOnClickListener {
+//            viewModel.contador.contar()
+//        }
 
         button.setOnClickListener {
             viewModel.contador.contar(5)
         }
 
-        viewModel.contador.quantidade.observe(this, Observer {
-            Log.d("LIVE_DATA", "Dado atualizado para $it")
-            textView.text = "Texto clicado: $it"
-        })
+//        viewModel.contador.quantidade.observe(this, Observer {
+//            Log.d("LIVE_DATA", "Dado atualizado para $it")
+
+//            textView.text = "Contador: $it"
+
+//            binding.quantidadeInt = it
+//        })
+    }
+
+    fun contar(view: View) {
+        viewModel.contador.contar()
     }
 
 /*
